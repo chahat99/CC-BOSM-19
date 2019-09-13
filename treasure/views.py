@@ -6,7 +6,7 @@ from django.db import transaction
 from .models import *
 from django.shortcuts import render
 import SportsCrypt.keyconfig as senv
-
+from django.contrib.auth.decorators import login_required
 import json
 
 # team edit view
@@ -20,18 +20,63 @@ def renderToken(request):
     return HttpResponse('Logged in')
 
 
+@login_required
+def question1(request):
+    return render(request, 'question-1.html')
+
+
+@login_required
+def question2(request):
+    return render(request, 'question-2.html')
+
+
+@login_required
+def question3(request):
+    return render(request, 'question-3.html')
+
+
+@login_required
+def question4(request):
+    return render(request, 'question-4.html')
+
+
+@login_required
+def questionmain(request):
+    return render(request, 'question-main.html')
+
+
+@login_required
+def formteam(request):
+    return render(request, 'Code.html')
+
+
+@login_required
+def startgame(request):
+    return render(request, 'StartGame.html')
+
+
+@login_required
+def teamname(request):
+    return render(request, 'TeamName.html')
+
+
+def renderFile(request, filename):
+    return render(request, filename)
+
+
+@csrf_exempt
+def getData(request):
+    if request.method == 'POST':
+        print(request.body)
+        return JsonResponse({'flag': 1})
+    if request.method == 'GET':
+        return JsonResponse({'question': 'dummy', 'team_name': 'dummy'})
+
+
 @csrf_exempt
 def login(request):
 
     if request.method == 'POST':
-
-        try:
-            authorization = str(request.META['HTTP_X_AUTHORIZATION'])
-        except KeyError:
-            return JsonResponse({"message": "Authorization Header Missing. Couldn't verify request source", "status": 0})
-
-        if authorization != senv.AUTHORIZATION:
-            return JsonResponse({"message": "Invalid Request Source", "status": 0})
 
         try:                # just to decode JSON properly
             data = json.loads(request.body.decode('utf8').replace("'", '"'))
