@@ -3,9 +3,14 @@
   <head>
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="550144110348-puc1jhgg5v7d3p8l8ar4940ab0nsjb50.apps.googleusercontent.com">
+		<link rel="stylesheet" href="{% static "css/loader.css"%}">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="{% static "js/sign-in_ajax.js" %}"></script>
     <style>
+      * {
+        margin: 0;
+      }
+
       body{
         background-image: url("{%static "assets/images/Background.svg" %}");
         background-repeat: no-repeat;
@@ -13,13 +18,36 @@
         background-size: cover;
         overflow: hidden;
       }
+
       .g-signin2{
-          margin-left: 50%;
-          margin-top: 50%;
+          /* margin-left: 50%; */
+          /* margin-top: 50%; */
+          width: auto;
+          position: fixed;
+          top: 55%;
+          left: 44%;
+        }
+
+        .abcRioButtonBlue {
+          margin: 0 auto;
         }
     </style>
   </head>
   <body>
+    <!--Loader-->
+		<div class="loader">
+        <div class="flip-card ">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="{%static "assets/images/loader_skull.svg"%}" alt="Avatar" style="width:40vw;height:50vh;">
+            </div>
+            <!-- <div class="flip-card-back">
+              <img src="{%static "assets/images/bosm_logo.svg"%}" alt="Avatar" style="width:40vw;height:50vh;">
+            </div> -->
+          </div>
+        </div>
+      </div>
+
     <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">
         <div></div>
     </div>
@@ -68,6 +96,19 @@
         res.send(send);
         window.location.href = "http://localhost:8000/treasure/StartGame.html";
       }
+
+      function loadComplete() {
+				loader = document.querySelector(".loader");
+				loader.style.opacity = "0";
+				console.log("LOADED");
+				setTimeout(function() {
+					loader.style.display = "none"
+				}, 800);
+			}
+
+			// window.onload = function(){
+			// 	setTimeout(loadComplete, 4000);
+			// };
     </script>
   </body>
 </html>
