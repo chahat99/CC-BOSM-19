@@ -574,7 +574,7 @@ body{
   top:10%;
   left:13%;
   font-family: "Caribbean Regular";
-  animation-delay: 8s
+  animation-delay: 8sa;
   animation: textslide 1s;
   animation-fill-mode: forwards;
   z-index:70;
