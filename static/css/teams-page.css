@@ -1,4 +1,4 @@
-{%load staticfiles%}
+/* {%load staticfiles%} */
 *{
     box-sizing: border-box;
     padding: 0;
@@ -7,7 +7,8 @@
 
 @font-face {
     font-family: "piratefont";
-    src: url("{% static "/assets/fonts/CaslonishFraxx.ttf"%}");
+    /* src: url("{% static "assets/fonts/CaslonishFraxx.ttf" %}"); */
+    src: url("../fonts/CaslonishFraxx.ttf");
   }
 
 * {
@@ -21,7 +22,7 @@ body, html {
 }
 
 body {
-    background: url("{% static "/assets/images/Background.svg" %}") no-repeat center center;
+    background: url("../assets/images/Background.svg") no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -53,9 +54,9 @@ width: 80%;
 margin: 20% auto 0;
 }
 
-.main .team .team-members p {
+/* .main .team .team-members p {
 
-}
+} */
 
 
 .refresh {
@@ -113,9 +114,9 @@ margin: 20% auto 0;
     margin: 20% auto 0;
     }
 
-    .main .team .team-members p {
+    /* .main .team .team-members p {
 
-    }
+    } */
 
 
     .refresh {
