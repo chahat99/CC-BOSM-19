@@ -8,7 +8,7 @@
 @font-face {
     font-family: "piratefont";
     /* src: url("{% static "assets/fonts/CaslonishFraxx.ttf" %}"); */
-    src: url("../fonts/CaslonishFraxx.ttf");
+    src: url("../assets/fonts/CaslonishFraxx.ttf");
   }
 
 * {
@@ -52,6 +52,10 @@ margin-top: 6%;
 .main .team {
 width: 80%;
 margin: 20% auto 0;
+}
+#teamname {
+    text-align: center;
+    font-family: piratefont;
 }
 
 /* .main .team .team-members p {
