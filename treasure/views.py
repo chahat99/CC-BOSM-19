@@ -265,11 +265,18 @@ def question_details(request):
         #     return JsonResponse({"message": "Invalid Request Source", "status": 0})
 
         # try:
-        pk = pk = Participant.objects.get(user=request.user).team.state
+        pk = Participant.objects.get(user=request.user).team.state
         print(pk)
         question = Question.objects.get(myid=pk).question
         print(str(question))
-        return JsonResponse({"message": "Question Sent Successfully", "Question": question, "status": 1})
+        if pk == 7 or pk == 8 or pk == 9:
+            if Answer.objects.get(question__question=question).times_answered <= 2*(10-pk)-1:
+                return JsonResponse({"message": "Question Sent Successfully", "Question": question, "status": 1})
+            else:
+
+                return JsonResponse({"message": "Question Sent Successfully", "Question": "Answer Limit has been Reached.", "status": 0})
+        else:
+            return JsonResponse({"message": "Question Sent Successfully", "Question": question, "status": 1})
         # except Exception:
         # return JsonResponse({"message": "Please check syntax of JSON data passed.", "status": 0})
 
@@ -314,6 +321,18 @@ def check_question_answer(request):
                 print('hehehe')
 
                 team = participant.team
+            if question_id == 7 or question_id == 8 or question_id == 9:
+                if answer.times_answered <= 2*(10-question_id)-1:
+                    if ans_saved == answer.answer:
+                        team.state += 1
+                        team.save()
+                        answer.times_answered += 1
+                        answer.save()
+                        return JsonResponse({"message": "Team answered the question correctly.", "status": 1})
+                    else:
+                        return JsonResponse({"message": "Answer is incorrect", "status": 0})
+                else:
+                    return JsonResponse({"message": "Answer Limit Reached.", "status": 0})
             if ans_saved == answer.answer:
                 team.state += 1
                 team.save()
