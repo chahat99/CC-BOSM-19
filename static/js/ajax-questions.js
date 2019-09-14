@@ -15,7 +15,7 @@ function load() {
           document.getElementById("q-text").innerHTML = inst.Question;
       }
     };
-    
+
     xhttp.send();
   }
 // var pid = {
@@ -52,13 +52,13 @@ function sendres() {
             var flag = JSON.parse(this.responseText);
             console.log(flag)
             if(flag.status == 1) {
-              window.location.href = "http://localhost:8000/treasure/question-main.html";
-            } 
+              window.location.href = "/treasure/question-main.html";
+            }
             else {
               console.log(2);
               $(function(){
                   alert("Wrong answer!")
-              });            
+              });
             }
         }
     };

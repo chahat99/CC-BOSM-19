@@ -6,7 +6,7 @@ function refreshStatus() {
       if (this.readyState == 4 && this.status == 200) {
           var flag = JSON.parse(this.responseText).flag;
           if(flag == 1) {
-            window.location.href = "localhost:8000/treasure/question-main.html";
+            window.location.href = "/treasure/question-main.html";
           } else {
             alert("Incorrect answer was submitted by a crew member!");
           }
