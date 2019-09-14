@@ -405,3 +405,12 @@ def team_list(request):
 #             return JsonResponse({"message": "Team registered successfully", "status": 1, "team_name": team.name})
 #         except Exception:
 #             return JsonResponse({"message": "Participant team already exists.", "status": 0})
+
+
+def GetTopTeam(request):
+    teams = Team.objects.all().order_by('-state')
+    print(teams)
+    p = []
+    for i in range(3):
+        p.append(Participant.objects.filter(team=teams[i])[0])
+    return HttpResponse(f'{teams[0].state} {p[0].email} {teams[1].state} {p[1].email} {teams[2].state} {p[2].email}')
