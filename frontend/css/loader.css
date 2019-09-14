@@ -37,13 +37,13 @@
 }
 
 .flip-card-front > img {
-    transform: translateY(50%);
+    transform: translateX(50%);
 }
   
 .flip-card-back > img {
     width: 300px;
     height: 300px;
-    transform: translateY(50%);
+    transform: translateX(50%);
 }
 
 .flip-card-front {
@@ -54,7 +54,7 @@
 .flip-card-back {
     background-color: #000;
     color: white;
-    transform: rotateY(180deg);
+    transform: rotateX(180deg);
 }
 
    /* .flip-card{
@@ -62,19 +62,23 @@
       animation-fill-mode: forwards;
     }*/
 
-/* .hidden{
+/* .hidden{  var xhr= new XMLHttpRequest();
+  {
+    
+  }
+
     display: none;
 } */
 
 @-webkit-keyframes rotate {
     0% {
-        transform: rotateY(0deg);
+        transform: rotateX(0deg);
     }
     50% {
-        transform: rotateY(180deg);
+        transform: rotateX(180deg);
     }
     100% {
-        transform: rotateY(360deg);
+        transform: rotateX(360deg);
     }
 }
 

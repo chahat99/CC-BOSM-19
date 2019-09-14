@@ -30,3 +30,32 @@ $(function(){
     $('#map').removeClass('map-animation-2');
   });
 });
+
+
+var state;
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     var json=JSON.parse(this.responseText);
+     state=json.questionstate;
+    }
+  };
+  xhttp.open("GET", "", true);
+  xhttp.send();
+}
+
+window.onload=function(){
+  if(state==1){
+    $("#map").attr('src', '{% static 'assets/images/Map 1.svg' %}');
+    }
+  if(state==2){
+    $("#map").attr('src', '{% static 'assets/images/Map 2.svg' %}');
+  }
+  if(state==3){
+    $("#map").attr('src', '{% static 'assets/images/Map 3.svg' %}');
+  }
+  if(state==4){
+    $("#map").attr('src', '{% static 'assets/images/Map 4.svg' %}');
+  }
+}

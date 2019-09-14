@@ -1,9 +1,9 @@
 
 var refbut=document.getElementById("refbut");
 var teamname=document.getElementById("teamname");
+console.log('hello')
 
-
-function teamname {
+function teamname() {
     var xhr=new XMLHttpRequest();
     xhttp.open("GET", "linkhere", true);
     xhr.setRequestHeader("Content-Type",'application/json');
@@ -31,8 +31,8 @@ function addteam(){
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
            var json2 = JSON.parse(this.responseText);
-           
-           var players[i]=document.createElement("p");
+
+           players[i]=document.createElement("p");
            players[i].classList.add("players");
            players[i].innerHTML="Name: "+this.responseText;
            last.appendChild(btn);

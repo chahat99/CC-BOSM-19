@@ -2,6 +2,7 @@
 var xhttp = new XMLHttpRequest();
 var question;
 var team_name;
+var state;
 xhttp.open("GET", "url", true);
 xhttp.setRequestHeader("Content-Type", "application/json");
 xhttp.onreadystatechange = function() {
@@ -11,6 +12,7 @@ xhttp.onreadystatechange = function() {
     console.log(json);
       question = json.question;
       team_name = json.team_name;
+      // state = json.state;
       document.getElementsByClassName("").innerHTML = question;
       document.getElementsByClassName("").innerHTML = team_name;
       console.log(question,team_name);

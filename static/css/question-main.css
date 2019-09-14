@@ -1,8 +1,17 @@
 body{
   width:100vw;
   height: 100vh;
-  font-family: "Caribbean Regular";
+  font-family: caribbean;
   overflow: hidden;
+}
+
+ @font-face {
+    font-family: "caribbean";
+    src: url("../assets/fonts/Caribbean.ttf")
+  }
+
+p {
+  font-family: caribbean;
 }
 
 .container {
@@ -16,7 +25,7 @@ body{
   left: 0;
   height: 100%;
   width: 100%;
-  background-image: url('../assets/images/First Background edit.jpg');
+  background-image: url('../assets/images/background-01.svg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -68,10 +77,18 @@ body{
 .btn{
   position: absolute;
   z-index: 150;
-  opacity: 0;
-  width: 19%;
-  height: 10%;
+  /*opacity: 0;*/
+  width: 10%;
+  height: 6%;
   cursor: pointer;
+  border:none;
+/*   background-color: #ad8d3c; */
+/*   color: #4a2a0a; */
+/*   border: 2px solid #80553d; */
+}
+
+.btn p {
+  color: #4a2a0a;
 }
 
 #map-button{
@@ -85,22 +102,41 @@ body{
   opacity:0;
 }
 
+
 #character{
-  height:30%;
-  bottom:24%;
-  left:-4%;
+  height:61%;
+  bottom:-14%;
+  left:-11%;
   position: absolute;
   z-index:70;
 }
 
+input {
+width: 50%;
+
+left: 22%;
+
+position: absolute;
+
+margin-top: 2%;
+}
+
 #my-crew{
   top:49%;
-  left: 76%;
+  left: 81%;
+  background-image: url('../assets/images/mycrew.svg');
+  background-position: center;
+  background-size: 225%;
+  background-repeat: no-repeat;
 }
 
 #sign-out{
   top:72%;
-  left: 76%;
+  left: 81%;
+  background-image: url('../assets/images/signout.svg');
+  background-position: center;
+  background-size: 225%;
+  background-repeat: no-repeat;
 }
 
 #next{
@@ -113,9 +149,8 @@ body{
   cursor: pointer;
   background-color: #e8d295;
   border: 2px solid #a65733;
-  font-family: "Caribbean Regular";
-  font-size: 3vw;
-  font-weight: bold;
+  font-family: caribbean;
+  font-size: 2.8vw;
   color:#361709;
 }
 
@@ -134,18 +169,35 @@ body{
   top: 0;
 }
 
-#dialogue-text{
-  top:10%;
-  left:13%;
-  font-family: "Caribbean Regular";
-  animation-delay: 8s
-  animation: textslide 1s;
-  animation-fill-mode: forwards;
-  z-index:70;
-  position: absolute;
-  width:80%;
-  color: white;
-  font-size:2.5vw;
+#dialogue-text {
+    top: 15%;
+    left: 15%;
+    font-family: "Caribbean Regular";
+    /* animation-delay: 8s; animation: textslide 1s; */
+    animation-fill-mode: forwards;
+    z-index: 70;
+    position: absolute;
+    width: 75%;
+    height: 54%;
+    color: white;
+    font-size: 1.8vw;
+    overflow-y: scroll;
+}
+
+#dialogue-text > .content-div > .desc-div::-webkit-scrollbar {
+    width: 0.5vw;
+}
+
+/* #dialogue-text > .content-div > .desc-div::-webkit-scrollbar-track {
+    background: #888; 
+} */
+  
+#dialogue-text > .content-div > .desc-div::-webkit-scrollbar-thumb {
+    background: #f1f1f1; 
+}
+  
+#dialogue-text > .content-div > .desc-div::-webkit-scrollbar-thumb:hover {
+    background: #555; 
 }
 
 .map-animation{
@@ -156,7 +208,7 @@ body{
   animation: mapmove-2 1s ease-out;
   animation-fill-mode: forwards ;
 }
-.box-animation{
+.box-animation, #dialogue-text{
   animation: box-appear 1s ease-out;
 }
 @keyframes textslide{
@@ -266,8 +318,8 @@ body{
 
 @media (aspect-ratio: 16/10) {
   #character {
-    bottom: 25%;
-    left:-4%;
+    bottom: -14%;
+    left:-11%;
   }
 
 #map{
@@ -326,8 +378,8 @@ body{
 
 @media (aspect-ratio: 16/9) {
   #character {
-    bottom:18%;
-    left:-4%;
+    bottom:-11%;
+    left:-14%;
   }
 
 #map{
@@ -388,9 +440,9 @@ body{
 
 @media (aspect-ratio: 2436/1125) {
   #character {
-    bottom:0%;
-    left:-3%;
-    width:10%;
+    bottom:-34%;
+    left:-12%;
+    width:20%;
     height:auto;
   }
 

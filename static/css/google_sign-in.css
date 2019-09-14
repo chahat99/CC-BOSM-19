@@ -1,0 +1,135 @@
+* {
+    margin: 0;
+  }
+
+  body{
+    /* background-image: url( "../assets/images/treasure-Hunt.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; */
+    overflow: hidden;
+  }
+
+  @font-face {
+    font-family: "caribbean";
+    src: url("../assets/fonts/Caribbean.ttf")
+  }
+
+  .g-signin2{
+      /* margin-left: 50%; */
+      /* margin-top: 50%; */
+      width: auto;
+      position: fixed;
+      top: 75%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+
+    .abcRioButtonBlue {
+      margin: 0 auto;
+    }
+    .cclogo {
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width:20%;
+        position: fixed;
+        /* background-image: url( "../assets/images/CodingClub-06.svg"); */
+        z-index: 1;
+    }
+    .text {
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        position: fixed;
+        width: auto;
+        font-family: "caribbean";
+        color:#7a6453;
+        font-size: 1.5vw;
+    }
+    .name {
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        position: fixed;
+        width: auto;
+        font-family: "caribbean";
+        color:#7a6453;
+        font-size: 3vw;
+    }
+    .subtitle {
+        top: 63%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        position: fixed;
+        width: auto;
+        font-family: "caribbean";
+        color:#7a6453;
+        /* font-size: 3vw; */
+    }
+    #compass-1 {
+        bottom: 5vh;
+        left: 1vw;
+        width:8vw;
+        height: 10vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        z-index: 1;
+        background-image: url( "../assets/images/compass-13.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        transform: rotate(55deg);
+        /* animation: rotate 10s linear infinite; */
+    }
+    #compass-2 {
+        top: 20vh;
+        right: 1vw;
+        width:8vw;
+        height: 10vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        z-index: 1;
+        background-image: url( "../assets/images/compass-13.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        transform: rotate(85deg);
+        /* animation: rotate 10s linear infinite; */
+    }
+    #compass-3 {
+        bottom: 3vh;
+        right: 1vw;
+        width:8vw;
+        height: 10vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        z-index: 1;
+        background-image: url( "../assets/images/compass-13.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        transform: rotate(15deg);
+        /* animation: rotate 10s linear infinite; */
+    }
+    .needle {
+        transform: translate(-50%,-50%);
+        animation: rotate 10s linear infinite;
+        z-index: 1000;
+    }
+    #compass-3 > .needle {
+        animation-direction: reverse;
+    }
+    @keyframes rotate {
+        0% { transform: rotate(0deg);}
+        100% {transform: rotate(360deg);}
+    }
