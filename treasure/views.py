@@ -269,8 +269,8 @@ def question_details(request):
         print(pk)
         question = Question.objects.get(myid=pk).question
         print(str(question))
-        if pk == 7 or pk == 8 or pk == 9:
-            if Answer.objects.get(question__question=question).times_answered <= 2*(10-pk)-1:
+        if pk == 6 or pk == 7 or pk == 8:
+            if Answer.objects.get(question__question=question).times_answered <= 2*(9-pk)-1:
                 return JsonResponse({"message": "Question Sent Successfully", "Question": question, "status": 1})
             else:
 
@@ -321,8 +321,8 @@ def check_question_answer(request):
                 print('hehehe')
 
                 team = participant.team
-            if question_id == 7 or question_id == 8 or question_id == 9:
-                if answer.times_answered <= 2*(10-question_id)-1:
+            if question_id == 6 or question_id == 7 or question_id == 8:
+                if answer.times_answered < 2*(10-question_id)-1:
                     if ans_saved == answer.answer:
                         team.state += 1
                         team.save()
