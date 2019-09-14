@@ -67,6 +67,7 @@
           if (this.readyState ==4 && this.status == 200) {
             var check = JSON.parse(this.responseText);
             console.log(check);
+            localStorage.setItem("id","check.participant_id");
           }
         };
         res.send(send);

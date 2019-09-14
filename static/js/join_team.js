@@ -1,7 +1,8 @@
 function joinTeam(){
   var xhttp = new XMLHttpRequest();
   var obj = {
-    pin:document.getElementsByClassName("input2")[0].value
+    pin:document.getElementsByClassName("input2")[0].value,
+    id : localStorage.getItem("id")
   }
   var pincode=JSON.stringify(obj)
   xhttp.open("POST", "jointeam/", true);

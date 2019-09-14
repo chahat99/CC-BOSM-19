@@ -1,7 +1,8 @@
 function team() {
     var xhttp1 = new XMLHttpRequest();
     var obj={
-      team:document.getElementsByClassName("input3")[0].value
+      team:document.getElementsByClassName("input3")[0].value,
+      id : localStorage.getItem("id")
     };
 var team_name=JSON.stringify(obj);
 xhttp1.open("POST", "create_team/", true);

@@ -2,7 +2,12 @@
 var xhttp = new XMLHttpRequest();
 var question;
 var team_name;
-xhttp.open("GET", "url/", true);
+
+var pid = {
+  id1 : localStorage.getItem("id")
+}
+var participation_id = JSON.stringify(pid);
+xhttp.open("POST", "url/", true);
 xhttp.setRequestHeader("Content-Type", "application/json");
 xhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
@@ -12,16 +17,15 @@ xhttp.onreadystatechange = function() {
       question = json.question;
       team_name = json.team_name;
       document.getElementById("q-text").innerHTML = question;
-    //  document.getElementsByClassName("").innerHTML = team_name;
       console.log(question,team_name);
   }
 };
-
-xhttp.send();
+xhttp.send(participation_id);
 
 function sendres() {
     var obj = {
-      ans : document.getElementsByClassName("input2").value
+      ans : document.getElementsByClassName("input2").value,
+      id : localStorage.getItem("id")
     }
     console.log(obj);
     var sendans = JSON.stringify(obj);
