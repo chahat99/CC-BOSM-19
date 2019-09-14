@@ -9,6 +9,7 @@ from django.shortcuts import render
 import SportsCrypt.keyconfig as senv
 from django.contrib.auth.decorators import login_required
 import json
+from django.contrib.auth import login
 
 # team edit view
 
@@ -97,15 +98,23 @@ def login(request):
             if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
                 raise ValueError('Wrong issuer.')
             email = idinfo['email']
+            try:
+                user = User.objects.get(username=email.split('@')[0])
+            except User.DoesNotExist:
+                user = User.objects.create_user(username=email.split('@')[0])
+            except:
+                return JsonResponse({"message": "Invalid ID Token passed!", "status": 0})
+
+            logged_user = login(request, user)
 
             try:
-                participant = Participant.objects.get(email=email)
+                participant = Participant.objects.get(user=user, email=email)
                 if participant.team:
                     return JsonResponse({"message": "User Login Successful!", "status": 2, "participant_id": participant.unique_id})
                 else:
                     return JsonResponse({"message": "Participant does not belong to any Team!", "status": 1, "participant_id": participant.unique_id})
             except Participant.DoesNotExist:
-                participant = Participant.objects.create(email=email)
+                participant = Participant.objects.create(user=user, email=email)
                 return JsonResponse({"message": "Participant does not belong to any Team!", "status": 1, "participant_id": participant.unique_id})
 
         except ValueError:
@@ -114,24 +123,26 @@ def login(request):
 
 
 @csrf_exempt
+@login_required
 def create_team(request):
     if request.method == 'POST':
-        try:
-            authorization = str(request.META['HTTP_X_AUTHORIZATION'])
-        except KeyError:
-            return JsonResponse({"message": "Authorization Header Missing. Couldn't verify request source", "status": 0})
+        # try:
+        #     authorization = str(request.META['HTTP_X_AUTHORIZATION'])
+        # except KeyError:
+        #     return JsonResponse({"message": "Authorization Header Missing. Couldn't verify request source", "status": 0})
 
-        if authorization != senv.AUTHORIZATION:
-            return JsonResponse({"message": "Invalid Request Source", "status": 0})
-
+        # if authorization != senv.AUTHORIZATION:
+        #     return JsonResponse({"message": "Invalid Request Source", "status": 0})
+        print(request.user.username)
         try:
+            print(request.body)
             data = json.loads(request.body.decode('utf8'))
         except Exception:
             return JsonResponse({"message": "Please check syntax of JSON data passed.", "status": 0})
 
         try:
-            part_id = data['participant_id']
-            team_name = data['team_name']
+            # part_id = data['participant_id']
+            team_name = data['teamname']
         except KeyError as missing_data:
             return JsonResponse({'message': 'Field missing: {0}'.format(missing_data), 'status': 0})
 
@@ -143,15 +154,20 @@ def create_team(request):
             return JsonResponse({'message': 'Team could not be Formed', 'status': 0})
 
         try:
-            participant = Participant.objects.get(unique_id=part_id)
+            print('Hello1')
+            participant = Participant.objects.get(user=request.user)
+            print('Hello1')
             participant.team = team
+            print('Hello1')
             participant.save()
+            print('Hello1')
             return JsonResponse({'message': 'Team Formed', 'team_name': team.name, 'team_code': team.code, 'status': 1})
         except Exception:
             return JsonResponse({'message': 'Participant could not be Updated', 'status': 0})
 
 
 @csrf_exempt
+@login_required
 def join_team(request):
     if request.method == 'POST':
         try:
@@ -197,6 +213,7 @@ def join_team(request):
 
 
 @csrf_exempt
+@login_required
 def question_details(request):
     if request.method == 'POST':
         try:
@@ -229,6 +246,7 @@ def question_details(request):
 
 
 @csrf_exempt
+@login_required
 def check_question_answer(request):
     if request.method == 'POST':
         try:
