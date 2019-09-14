@@ -413,4 +413,4 @@ def GetTopTeam(request):
     p = []
     for i in range(3):
         p.append(Participant.objects.filter(team=teams[i])[0])
-    return HttpResponse(f'{teams[0].state} {p[0].email} {teams[1].state} {p[1].email} {teams[2].state} {p[2].email}')
+    return HttpResponse(f'{teams[0].state} {p[0].user.username} {teams[1].state} {p[1].user.username} {teams[2].state} {p[2].user.username}')
