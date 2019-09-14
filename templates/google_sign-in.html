@@ -13,7 +13,7 @@
   <body>
       <img src="{%static "assets/images/treasure-Hunt.png"%}" alt="Avatar" style="width:100vw;height:100vh;position: absolute;z-index: -10;">
     <!--Loader-->
-		<!-- <div class="loader">
+		<div class="loader" id="loading">
         <div class="flip-card ">
           <div class="flip-card-inner">
             <div class="flip-card-front">
@@ -21,7 +21,7 @@
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
     
     <div class="cclogo">
       <img src="{%static "assets/images/CodingClub-06.svg"%}"></img>
@@ -47,9 +47,14 @@
       <img class="needle" src="{%static "assets/images/needle-01.svg"%}"></img>
     </div>
     <script>
-
+      document.getElementById('loading').style.display = "none";
           var obj = {
           token : token
+        }
+        window.onload = removeLoader();
+        function removeLoader() {
+          document.getElementById('loading').style.display = "none";
+          document.getElementsByClassName('loader')[0].style.opacity = "0";
         }
         console.log(token)
         var send = JSON.stringify(obj);

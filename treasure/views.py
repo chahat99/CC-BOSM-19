@@ -243,63 +243,67 @@ def join_team(request):
 
 @csrf_exempt
 def question_details(request):
-    if request.method == 'POST':
-        try:
-            authorization = str(request.META['HTTP_X_AUTHORIZATION'])
-        except KeyError:
-            return JsonResponse({"message": "Authorization Header Missing. Couldn't verify request source", "status": 0})
+    if request.method == 'GET':
+        # try:
+        #     authorization = str(request.META['HTTP_X_AUTHORIZATION'])
+        # except KeyError:
+        #     return JsonResponse({"message": "Authorization Header Missing. Couldn't verify request source", "status": 0})
 
-        if authorization != senv.AUTHORIZATION:
-            return JsonResponse({"message": "Invalid Request Source", "status": 0})
+        # if authorization != senv.AUTHORIZATION:
+        #     return JsonResponse({"message": "Invalid Request Source", "status": 0})
 
-        try:
-            data = json.loads(request.body.decode('utf8'))
-        except Exception:
-            return JsonResponse({"message": "Please check syntax of JSON data passed.", "status": 0})
+        # try:
+        pk=pk=Participant.objects.get(user=request.user).team.state
+        print(pk)
+        question = Question.objects.get(myid=pk).question
+        print(str(question))
+        return JsonResponse({"message": "Question Sent Successfully","Question":question, "status": 1})
+        # except Exception:
+            # return JsonResponse({"message": "Please check syntax of JSON data passed.", "status": 0})
 
-        try:
-            part_id = data['participant_id']
-        except KeyError as missing_data:
-            return JsonResponse({'message': 'Field missing: {0}'.format(missing_data), 'status': 0})
-
-        try:
-            with transaction.atomic():
-                participant = Participant.objects.get(unique_id=part_id)
-                req_question = Question.objects.get(pk=participant.team.state+1)
-            return JsonResponse({"question_id": req_question.unique_id, "question_text": req_question.question, "status": 1})
-        except Exception:
-            return JsonResponse({"message": "No such question exists.", "status": 0})
+        # try:
+        #     with transaction.atomic():
+        #         participant = Participant.objects.get(user=request.user)
+        #         req_question = Question.objects.get(=participant.team.state+1)
+        #     return JsonResponse({"question_id": req_question.unique_id, "question_text": req_question.question, "status": 1})
+        # except Exception:
+        #     return JsonResponse({"message": "No such question exists.", "status": 0})
     else:
         return JsonResponse({"message": "A <POST> request to get the question", "status": 0})
 
 
+
+
+
 @csrf_exempt
-@login_required
 def check_question_answer(request):
     if request.method == 'POST':
-        try:
-            authorization = str(request.META['HTTP_X_AUTHORIZATION'])
-        except KeyError:
-            return JsonResponse({"message": "Authorization Header Missing. Couldn't verify request source", "status": 0})
+        # try:
+        #     authorization = str(request.META['HTTP_X_AUTHORIZATION'])
+        # except KeyError:
+        #     return JsonResponse({"message": "Authorization Header Missing. Couldn't verify request source", "status": 0})
 
-        if authorization != senv.AUTHORIZATION:
-            return JsonResponse({"message": "Invalid Request Source", "status": 0})
+        # if authorization != senv.AUTHORIZATION:
+        #     return JsonResponse({"message": "Invalid Request Source", "status": 0})
         try:
             data = json.loads(request.body.decode("utf-8").replace("'", '"'))
         except Exception:
             return JsonResponse({"message": "Please check syntax of JSON data passed.", "status": 0})
         try:
-            question_id = data['question_id']
-            participant_id = data['participant_id']
+            # question_id = data['question_id']
+            # participant_id = data['participant_id']
             ans_saved = data['ans']  # there is no answer in the database yet.
         except KeyError as missing_data:
             return JsonResponse({'message': 'Field missing: {0}'.format(missing_data), 'status': 0})
 
         try:
             with transaction.atomic():
-                question = Question.objects.get(unique_id=question_id)
+                participant = Participant.objects.get(user=request.user)
+                question_id = participant.team.state
+                question = Question.objects.get(myid=question_id)
                 answer = Answer.objects.get(question=question)
-                participant = Participant.objects.get(unique_id=participant_id)
+                print('hehehe')
+                
                 team = participant.team
             if ans_saved == answer.answer:
                 team.state += 1
@@ -309,7 +313,9 @@ def check_question_answer(request):
                 return JsonResponse({"message": "Team answered the question correctly.", "status": 1})
             else:
                 return JsonResponse({"message": "Answer is incorrect", "status": 0})
-        except:
+        except Exception as e:
+            print(str(e))
+            print("njkhsfjhklsdff")
             return JsonResponse({"message": "Check if the question has been answered", "status": 0})
 
 @csrf_exempt

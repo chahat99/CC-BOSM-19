@@ -1,94 +1,3 @@
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-    {% load staticfiles %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SportsCrypt</title>
-    <link rel="stylesheet" href="{%static "css/question-main.css" %}">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
-    <script src="https://code.jquery.com/jquery-latest.js"></script>
-    <script type="text/javascript" language="JavaScript">
-
-
-  function reset_animation() {
-    var el = document.getElementById('map');
-    el.style.animation = 'none';
-    el.offsetHeight; /* trigger reflow */
-    el.style.animation = null;
-  }
-
-  $(function(){
-    $('#map-button').on('click',function(){
-      $('#map').addClass('map-animation-2');
-      $('#map').removeClass('map-animation')
-    });
-  });
-
-
-  $(function(){
-    var bool= 0;
-    $('#next').hide(0);
-    $('#character').hide(0);
-    $('#dialogue-text').hide(0);
-    $('#dialogue').hide(0);
-    $('#map-close').on('click',function(){
-      $('#map').addClass('map-animation');
-      $('#map').removeClass('map-animation-2');
-      if(bool==0){
-        $('#character').hide(0).delay(0).fadeIn(1500);
-        $('#dialogue').hide(0).delay(400).show(0);
-        $('#dialogue').addClass('box-animation');
-        $('#dialogue-text').hide(0).delay(1000).fadeIn(4000);
-        $('#next').hide().delay(2000).fadeIn(1000);
-    }
-    bool=1;
-    });
-  });
-  function redirect() {
-    window.location.href = "http://localhost:8000/treasure/question-1.html";
-  }
-
-</script>
-
-  </head>
-
-  <body>
-
-   <div id="rotate-prompt">
-    <img src="{%static "assets/images/rotate-screen.gif" %}">
-    <p>Please play the game in landscape mode!</p>
-    </div>
-
-     <div class="container">
-      <img id="background-image" class= "center fit" src="assets/images/First Background edit.jpg">
-      <div class="main">
-        <div id="dialogue-cont">
-          <img id="dialogue" src="{%static "assets/images/Dialogue Box_Artboard 7.svg" %}">
-          <input type="text"></input>
-          <button id="next" type="button" onclick="redirect()">Submit</button>
-          <div id="dialogue-text">
-            <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.<br><br>Lorem ipsum is placeholder text commonly used in the graphic, print..</p>
-          </div>
-          <img id="character" src="{% static "assets/images/Character_Artboard 7.png"%}">
-        </div>
-        <button id="map-close" type="button"></button>
-        <img id="map" src="{% static "assets/images/Map 1.svg"%}">
-        <button class="btn" id="my-crew" type="button"></button> -->
-        <!-- <button class="btn" id="sign-out" type="button"></button>
-        <div class="btn" id="my-crew"></div>
-        <div class="btn" id="sign-out"></div>
-
-        <button onclick="reset_animation()" id="map-button" type="button"></button>
-       </div>
-
-    </div>
-  </body>
-</html> -->
-
-
 <!DOCTYPE html>
 {% load staticfiles %}
 <html>
@@ -101,6 +10,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script src="{% static "/js/question_instruction.js" %}"></script>
     <script type="text/javascript" language="JavaScript">
 
 
@@ -155,17 +65,17 @@
       <div class="main">
         <div id="dialogue-cont">
           <img id="dialogue" src="{% static 'assets/images/Dialogue Box_Artboard 7.svg' %}">
-          <button id="next" type="button" onclick="window.location.href='localhost:8000/treasure/question-1.html';">Next</button>
+          <button id="next" type="button" onclick="submitCode()">Submit</button>
           <div id="dialogue-text">
-            <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.<br><br>Lorem ipsum is placeholder text commonly used in the graphic, print..</p>
-            <input type="text" placeholder="Enter the unique code">
+            <p id="show-text">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.<br><br>Lorem ipsum is placeholder text commonly used in the graphic, print..</p>
+            <input type="text" id="code-to" placeholder="Enter the unique code">
           </div>
           <img id="character" src="{% static 'assets/images/PIRATEBAXTER-01.svg'%}" >
         </div>
         <button id="map-close" type="button"></button>
         <img id="map" src="{% static 'assets/images/Map 1.svg' %}">
-        <button class="btn" id="my-crew" type="button"  onclick="window.location.href='localhost:8000/treasure/crew-member.html';"></button>
-        <button class="btn" id="sign-out" type="button"  onclick="window.location.href='localhost:8000/treasure/.html';"></button>
+        <button class="btn" id="my-crew" type="button"  onclick="goToCrew()"></button>
+        <!-- <button class="btn" id="sign-out" type="button"  onclick="signOut()"></button> -->
         <!-- <div class="btn" id="my-crew"></div>
         <div class="btn" id="sign-out"></div> -->
 
@@ -173,5 +83,13 @@
        </div>
 
     </div>
+    <script>
+      function goToCrew() {
+        window.location.href='/treasure/teams-page.html';
+      }
+      function signOut() {
+        window.location.href='localhost:8000/treasure/.html';
+      }
+    </script>
   </body>
 </html>
