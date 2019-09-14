@@ -21,7 +21,7 @@ xhttp.send();
 
 function sendres() {
     var obj = {
-      ans : document.getElementsByClassName("input2")[1].value
+      ans : document.getElementsByClassName("input2").value
     }
     console.log(obj);
     var sendans = JSON.stringify(obj);
@@ -34,8 +34,13 @@ function sendres() {
             console.log(flag)
             if(flag == 1) {
               window.location.href = "http://localhost:8000/treasure/question-main.html";
-            } else {
-              alert("Incorrect answer was submitted by a crew member!");
+            } 
+            else {
+              $(function(){
+                  $('#submit-btn').on('click', function(){
+                    $('submit-btn').attr("href", "#myModal");
+                  });
+              });            
             }
         }
     };
