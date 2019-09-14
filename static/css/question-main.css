@@ -78,9 +78,10 @@ p {
   position: absolute;
   z-index: 150;
   /*opacity: 0;*/
-  width: 19%;
-  height: 10%;
+  width: 10%;
+  height: 6%;
   cursor: pointer;
+  border:none;
 /*   background-color: #ad8d3c; */
 /*   color: #4a2a0a; */
 /*   border: 2px solid #80553d; */
@@ -101,29 +102,40 @@ p {
   opacity:0;
 }
 
+
 #character{
-  height:30%;
-  bottom:24%;
-  left:-4%;
+  height:61%;
+  bottom:-14%;
+  left:-11%;
   position: absolute;
   z-index:70;
 }
 
+input {
+width: 50%;
+
+left: 22%;
+
+position: absolute;
+
+margin-top: 2%;
+}
+
 #my-crew{
   top:49%;
-  left: 76%;
+  left: 81%;
   background-image: url('../assets/images/mycrew.svg');
   background-position: center;
-  background-size: cover;
+  background-size: 225%;
   background-repeat: no-repeat;
 }
 
 #sign-out{
   top:72%;
-  left: 76%;
+  left: 81%;
   background-image: url('../assets/images/signout.svg');
   background-position: center;
-  background-size: cover;
+  background-size: 225%;
   background-repeat: no-repeat;
 }
 
@@ -137,9 +149,8 @@ p {
   cursor: pointer;
   background-color: #e8d295;
   border: 2px solid #a65733;
-  font-family: "Caribbean Regular";
-  font-size: 3vw;
-  font-weight: bold;
+  font-family: caribbean;
+  font-size: 2.8vw;
   color:#361709;
 }
 
@@ -169,7 +180,7 @@ p {
     width: 75%;
     height: 54%;
     color: white;
-    font-size: 2.5vw;
+    font-size: 1.8vw;
     overflow-y: scroll;
 }
 
@@ -307,8 +318,8 @@ p {
 
 @media (aspect-ratio: 16/10) {
   #character {
-    bottom: 25%;
-    left:-4%;
+    bottom: -14%;
+    left:-11%;
   }
 
 #map{
@@ -367,8 +378,8 @@ p {
 
 @media (aspect-ratio: 16/9) {
   #character {
-    bottom:18%;
-    left:-4%;
+    bottom:-11%;
+    left:-14%;
   }
 
 #map{
@@ -429,9 +440,9 @@ p {
 
 @media (aspect-ratio: 2436/1125) {
   #character {
-    bottom:0%;
-    left:-3%;
-    width:10%;
+    bottom:-34%;
+    left:-12%;
+    width:20%;
     height:auto;
   }
 
