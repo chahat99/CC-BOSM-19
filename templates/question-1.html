@@ -7,39 +7,55 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link rel="stylesheet" href="{% static "css/question.css"%}" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
+
     <script src="{% static "js/ajax-questions.js"%}"></script>
     <script src="{% static "js/question.js"%}"></script>
+
  </head>
 
 <body>
 
-  <div id="popup1" class="overlay">
-    <div class="popup">
-      <h2>Oops! Incorrect Answer</h2>
-      <a class="close" href="#">&times;</a>
-      <div class="content">
-        <p>Dont lose hope! There is still time left!</p>
-      </div>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Oops! Dont lose hope!</h4>
+    </div>
+    <div class="modal-body">
+      <p>The answer is incorrect!<br>Please try again</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
   </div>
+  </div>
+</div>
 
 
     <div id="rotate-prompt">
         <img src="{% static "assets/images/rotate-screen.gif" %}">
         Please play the game in landscape mode!
     </div>
+
     <div class="background">
     <p id="heading"> Question 1</p>
 
     <p id="q-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</p>
 
-    <div class="input2">
+    <div class="input3">
         <input class="input2">
     </div>
 
-    <a id="submit-btn" onclick="sendres();"><p>Submit</p></a>
+    <a id="submit-btn" data-toggle="modal" onclick="sendres();"><p>Submit</p></a>
     </div>
 </body>
 </html>
