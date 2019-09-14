@@ -12,7 +12,7 @@ class Question(models.Model):
     # unique_id = models.UUIDField("Question UUID", primary_key=True,
     #                              default=uuid.uuid4, editable=False)
     question = models.CharField(max_length=500)
-    myid = models.IntegerField(blank = False)
+    myid = models.IntegerField(blank=False)
 
 
 class Answer(models.Model):
@@ -28,7 +28,7 @@ class Team(models.Model):
     participant_count = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return self.name
+        return self.name+' team'
 
 
 class Participant(models.Model):

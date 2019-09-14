@@ -66,7 +66,7 @@ def renderFile(request, filename):
     try:
         print(request.user.username)
     except Exception:
-        print('not logged in')    
+        print('not logged in')
     return render(request, filename)
 
 
@@ -109,7 +109,7 @@ def login(request):
             except:
                 return JsonResponse({"message": "Invalid ID Token passed!", "status": 0})
 
-            auth_login(request,user)
+            auth_login(request, user)
             try:
                 participant = Participant.objects.get(user=user, email=email)
                 if participant.team:
@@ -183,22 +183,34 @@ def create_team(request):
         else:
             print('no user')
 
+
 @csrf_exempt
 def getPinCode(request):
-    if request.method=='GET':
+    if request.method == 'GET':
         try:
             if request.user.is_authenticated:
                 participant = Participant.objects.get(user=request.user)
                 team_code = participant.team.code
-                return JsonResponse({'message': 'PinCode Sent' , 'pincode':team_code , 'status': 1})
+                return JsonResponse({'message': 'PinCode Sent', 'pincode': team_code, 'status': 1})
             raise Exception
         except Exception:
-                return JsonResponse({'message': 'PinCode Failed' ,  'status': 0})
+            return JsonResponse({'message': 'PinCode Failed',  'status': 0})
+
 
 @csrf_exempt
 def join_team(request):
     if request.method == 'POST':
         if request.user.is_authenticated:
+            try:
+                participant = Participant.objects.get(user=request.user)
+                print("here")
+                # if participant.team:
+                #     return JsonResponse({"message": "User Login Successful!", "status": 2, "participant_id": participant.unique_id})
+                # else:
+                #     return JsonResponse({"message": "Participant does not belong to any Team!", "status": 1, "participant_id": participant.unique_id})
+            except Participant.DoesNotExist:
+                print('here1')
+                participant = Participant.objects.create(user=request.user)
             # try:
             #     authorization = str(request.META['HTTP_X_AUTHORIZATION'])
             # except KeyError:
@@ -227,7 +239,7 @@ def join_team(request):
                 return JsonResponse({'message': 'Team Participant Limit Reached.', 'status': 0})
 
             try:
-                participant = Participant.objects.get(user = request.user)
+                participant = Participant.objects.get(user=request.user)
             except Participant.DoesNotExist:
                 return JsonResponse({'message': 'Invalid Participant ID', 'status': 0})
 
@@ -253,13 +265,13 @@ def question_details(request):
         #     return JsonResponse({"message": "Invalid Request Source", "status": 0})
 
         # try:
-        pk=pk=Participant.objects.get(user=request.user).team.state
+        pk = pk = Participant.objects.get(user=request.user).team.state
         print(pk)
         question = Question.objects.get(myid=pk).question
         print(str(question))
-        return JsonResponse({"message": "Question Sent Successfully","Question":question, "status": 1})
+        return JsonResponse({"message": "Question Sent Successfully", "Question": question, "status": 1})
         # except Exception:
-            # return JsonResponse({"message": "Please check syntax of JSON data passed.", "status": 0})
+        # return JsonResponse({"message": "Please check syntax of JSON data passed.", "status": 0})
 
         # try:
         #     with transaction.atomic():
@@ -270,9 +282,6 @@ def question_details(request):
         #     return JsonResponse({"message": "No such question exists.", "status": 0})
     else:
         return JsonResponse({"message": "A <POST> request to get the question", "status": 0})
-
-
-
 
 
 @csrf_exempt
@@ -303,7 +312,7 @@ def check_question_answer(request):
                 question = Question.objects.get(myid=question_id)
                 answer = Answer.objects.get(question=question)
                 print('hehehe')
-                
+
                 team = participant.team
             if ans_saved == answer.answer:
                 team.state += 1
@@ -318,20 +327,21 @@ def check_question_answer(request):
             print("njkhsfjhklsdff")
             return JsonResponse({"message": "Check if the question has been answered", "status": 0})
 
+
 @csrf_exempt
 def team_list(request):
     if request.method == 'GET':
         if request.user.is_authenticated:
             part = Participant.objects.get(user=request.user)
             mylist = Participant.objects.filter(team=part.team)
-            namelist=[] 
+            namelist = []
             count = 0
             for item in mylist:
                 count += 1
                 namelist.append(item.user.username)
             return JsonResponse({"message": "Team List", "teamlist": namelist, "teamname": part.team.name, "length": count, "status": 1})
         else:
-            return JsonResponse({'message': 'Something Failed' ,  'status': 0})
+            return JsonResponse({'message': 'Something Failed',  'status': 0})
 
 # @csrf_exempt
 # def team_register(request):

@@ -5,11 +5,12 @@ window.onload = function team() {
       teamname :document.getElementsByClassName("input3")[0].value,
     };
 var team_name=JSON.stringify(obj);
+console.log(obj)
 xhttp1.open("POST", "/treasure/create_team/", true);
 xhttp1.setRequestHeader("Content-Type", "application/json");
 xhttp1.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
-    
+
     var json = JSON.parse(this.responseText);
       console.log(json);
       var pin = json.team_code;
@@ -24,4 +25,4 @@ xhttp1.onreadystatechange = function() {
 };
 
 xhttp1.send(team_name);
-}      
+}
