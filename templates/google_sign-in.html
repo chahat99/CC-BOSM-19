@@ -28,7 +28,7 @@
     <div class="text">Presents</div>
     <div class="name">SportsCrypt</div>
     <h5 class="subtitle">A treasure hunt event by Coding Club.</h5>
-    <div class="g-signin2" class="customGPlusSignIn" data-onsuccess="onSignIn" data-theme="dark">
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">
     </div>
     <div id="compass-1">
       <!-- <img src="{%static "assets/images/compass-13.svg"%}"></img> -->
@@ -59,6 +59,7 @@
           var obj = {
           token : token
         }
+        console.log(token)
         var send = JSON.stringify(obj);
         var res = new XMLHttpRequest();
         res.open("POST","/treasure/login/",true);
@@ -67,19 +68,20 @@
           if (this.readyState ==4 && this.status == 200) {
             var check = JSON.parse(this.responseText);
             console.log(check);
-            localStorage.setItem("id","check.participant_id");
+            localStorage.setItem("id",check.participant_id);
+            console.log(localStorage.getItem("id"));
           }
         };
         res.send(send);
+        // if(check.status == 1) {
+        //  var link = "StartGame.html";
+        // }
+        // else{
+        //   var link = "question-main.html";
+        // }
         window.location.href = "http://localhost:8000/treasure/StartGame.html";
+        // window.location.href = "http://localhost:8000/treasure/" + link;
       }
-  //     var auth2 = gapi.auth2.getAuthInstance();
-  //     function attachSignin(element) {
-  //   console.log(element.id);
-  //   auth2.attachClickHandler(element, {},onSignIn(googleUser));
-  // }
-  // attachSignin(document.getElementById("customBtn"));
-      
       function loadComplete() {
 				loader = document.querySelector(".loader");
 				loader.style.opacity = "0";

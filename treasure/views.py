@@ -4,6 +4,7 @@ import requests
 from django.views.decorators.csrf import csrf_exempt
 from django.db import transaction
 from .models import *
+from google.auth.transport import requests as google_request
 from django.shortcuts import render
 import SportsCrypt.keyconfig as senv
 from django.contrib.auth.decorators import login_required
@@ -79,6 +80,7 @@ def login(request):
     if request.method == 'POST':
 
         try:                # just to decode JSON properly
+            print(request.body)
             data = json.loads(request.body.decode('utf8').replace("'", '"'))
         except Exception:
             return JsonResponse({"message": "Please check syntax of JSON data passed.", "status": 0})
@@ -90,7 +92,7 @@ def login(request):
 
         try:
             idinfo = id_token.verify_oauth2_token(
-                token, requests.Request(), senv.CLIENT_ID)
+                token, google_request.Request(), senv.CLIENT_ID)
 
             if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
                 raise ValueError('Wrong issuer.')
@@ -99,12 +101,12 @@ def login(request):
             try:
                 participant = Participant.objects.get(email=email)
                 if participant.team:
-                    return JsonResponse({"message": "User Login Successful!", "status": 2, "participant id": participant.unique_id})
+                    return JsonResponse({"message": "User Login Successful!", "status": 2, "participant_id": participant.unique_id})
                 else:
-                    return JsonResponse({"message": "Participant does not belong to any Team!", "status": 1, "participant id": participant.unique_id})
+                    return JsonResponse({"message": "Participant does not belong to any Team!", "status": 1, "participant_id": participant.unique_id})
             except Participant.DoesNotExist:
                 participant = Participant.objects.create(email=email)
-                return JsonResponse({"message": "Participant does not belong to any Team!", "status": 1, "participant id": participant.unique_id})
+                return JsonResponse({"message": "Participant does not belong to any Team!", "status": 1, "participant_id": participant.unique_id})
 
         except ValueError:
             # Invalid token
