@@ -8,12 +8,7 @@
 
 @font-face {
     font-family: "piratefont";
-<<<<<<< HEAD
-    src: url("/assets/fonts/CaslonishFraxx.ttf");
-=======
-    /* src: url("{% static "assets/fonts/CaslonishFraxx.ttf" %}"); */
-    src: url("../assets/fonts/CaslonishFraxx.ttf");
->>>>>>> 7cdc83185851380b697a52abe45b514a657b3b9d
+  src: url("../assets/fonts/CaslonishFraxx.ttf");
   }
 
 * {
@@ -34,11 +29,7 @@ body, html {
 }
 
 body {
-<<<<<<< HEAD
-    background: url("/assets/images/Background.svg") no-repeat center center;
-=======
     background: url("../assets/images/Background.svg") no-repeat center center;
->>>>>>> 7cdc83185851380b697a52abe45b514a657b3b9d
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
