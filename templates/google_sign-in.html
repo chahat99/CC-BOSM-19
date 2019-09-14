@@ -12,7 +12,7 @@
   <body>
       <img src="{%static "assets/images/treasure-Hunt.png"%}" alt="Avatar" style="width:100vw;height:100vh;position: absolute;z-index: -10;">
     <!--Loader-->
-		<!-- <div class="loader">
+		<div class="loader">
         <div class="flip-card ">
           <div class="flip-card-inner">
             <div class="flip-card-front">
@@ -20,7 +20,7 @@
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
     
     <div class="cclogo">
       <img src="{%static "assets/images/CodingClub-06.svg"%}"></img>
@@ -72,12 +72,12 @@
         res.send(send);
         window.location.href = "http://localhost:8000/treasure/StartGame.html";
       }
-      var auth2 = gapi.auth2.getAuthInstance();
-      function attachSignin(element) {
-    console.log(element.id);
-    auth2.attachClickHandler(element, {},onSignIn(googleUser));
-  }
-  attachSignin(document.getElementById("customBtn"));
+  //     var auth2 = gapi.auth2.getAuthInstance();
+  //     function attachSignin(element) {
+  //   console.log(element.id);
+  //   auth2.attachClickHandler(element, {},onSignIn(googleUser));
+  // }
+  // attachSignin(document.getElementById("customBtn"));
       
       function loadComplete() {
 				loader = document.querySelector(".loader");
