@@ -1,248 +1,74 @@
-@font-face {
-	font-family: "caslonish";
-	src: url("../assets/fonts/CaslonishFraxx.ttf");
-}
-@font-face{
-	font-family: "Caribbean Regular";
-	src: url("");
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/question.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="js/ajax-questions.js"></script>
 
-#rotate-prompt{
-	display: none;
-	visibility: hidden;
-	  width:75%;
-	  margin-top:40%;
-	  margin-left: 14%;
-	  color:white;
-	  text-align: center;
-  }
-  #rotate-prompt img{
-	margin-left:-20%;
-  }
+    <script type="text/javascript" language="JavaScript">
 
 
-a {
-	text-decoration: none;
-}
-
-body{
-	text-align:center;
-	font-family: caslonish;
-}
-
-.background {
-	z-index: 2;
-	background-image: url(../assets/images/Background.svg);
-	background-repeat:no-repeat;
-	background-size: cover;
-	background-attachment:fixed;
-	background-position:center;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-evenly;
-	text-decoration:none;
-	height:100vh;
-	width:100vw;
-	top:0;
-	left:0;
-	position:absolute;
-	overflow: hidden;
-}
-
-.inline {
-	display:inline-block;
-	margin-left:10vw;
-}
-
-
-p {
-	color:#9c3111;
-	font-size:11vh;
-	text-decoration:none;
-	margin: 0;
-}
-
-.start {
-	text-decoration:none;
-	margin-top:17vh;
-}
-
-.input input, .input p {
-	width:9vw;
-	height:7vh;
-	color:#9c3111;
-	background-color:#d1bd79;
-	border:1vh solid #82553d;
-	margin-left:4vw;
-	font-weight: 700;
-}
-
-.next {
-	position: fixed;
-	bottom: 23vh;
-	right: 22vw;
-}
-
-.next p {
-	padding: 0.8vw 1vw 0.5vw 1vw;
-	color:#9c3111;
-	background-color:#d1bd79;
-	border:1vh solid #82553d;
-	font-size: 3vw;
-}
-
-.input input {
-	font-size:4vh;
-	padding:0 1vw;
-}
-
-.input p {
-	font-size: 6vh;
-	letter-spacing: 1.5px;
-	text-align: center;
-	padding: 0 1vw 0.5vw 1vw;
-}
-
-.flex {
-	display:flex;
-	align-items:center;
-	justify-content:space-around;
-	margin-bottom:19vh;
-}
-
-.flex p {
-	margin-left: 0;
-}
-
-.code2 p, .code2 input{
-	width:9vw;
-	height:7vh;
-	color:#9c3111;
-	background-color:#d1bd79;
-	border:1vh solid #82553d;
-	margin-left:4vw;
-	font-weight: 700;
-	font-size:4vw;
-}
-
-.code {
-	position:absolute;
-	top:35vh;
-	left:22vw;
-}
-
-.submit p{
-	width: auto;
-    height: 4vh;
-    position: absolute;
-    top: 75vh;
-    right: 25vw;
-    display: block;
-    color: #9c3111;
-    background-color: #d1bd79;
-    border: 1vh solid #82553d;
-    font-size: 4vh;
-    padding: 0.5vw 1vw 0.5vw 1vw;
-    margin-top: 1vh;
-}
-
-.input2 input{
-  position: absolute;
-	font-size:4vh;
-	padding:0 1vw;
-  left:33vw;
-  top:66vh;
-	width:30vw;
-	height:7vh;
-	color:#9c3111;
-	background-color:#d1bd79;
-	border:1vh solid #82553d;
-	margin-left:auto;
-	font-weight: 700;
-	margin-bottom:27vh;
-}
-
-#heading{
-	 margin-top:-5vh;
-}
-
-#q-text{
-  position: absolute;
-    font-family: 'Lato', sans-serif;
-    font-size: 2vw;
-    width: 60%;
-}
-
-#submit-btn p{
-	width: auto;
-    height: 5vh;
-    position: absolute;
-    top: 86vh;
-    left:45vw;
-    display: block;
-    color: #9c3111;
-    background-color: #d1bd79;
-    border: 1vh solid #82553d;
-    font-size: 2.2vw;
-    padding: 0.5vw 1vw 0.5vw 1vw;
-    margin-top: -4%;
-}
-
-
-
-.button {
-	font-family: Helvetica, Arial, sans-serif;
-	font-size: 13px;
-	padding: 5px 10px;
-	border: 1px solid #aaa;
-	background-color: #eee;
-	background-image: linear-gradient(top, #fff, #f0f0f0);
-	border-radius: 2px;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-	color: #666;
-	text-decoration: none;
-	text-shadow: 0 1px 0 #fff;
-	cursor: pointer;
-	transition: all 0.2s ease-out;
-}
-
-.overlay {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0,0,0,0.5);
-	transition: opacity 200ms;
-  visibility: hidden;
-	opacity: 0;
-}
-
-.popup {
-	margin: 75px auto;
-	padding: 20px;
-	background: #fff;
-	border: 1px solid #666;
-	width: 300px;
-	box-shadow: 0 0 50px rgba(0,0,0,0.5);
-	position: relative;
-}
-
-
-
-@media (orientation: portrait) {
-    .background, .loader{
-        display: none;
-	}
-
-    #rotate-prompt{
-      display: block;
-	  visibility: visible;
-	}
-
-    body{
-      z-index: 50;
-      background-image: url("../assets/images/black.jpg");
+    flag=0;
+    if(flag==0){
+      $(function(){
+        $('#submit-btn').on('click',function(){
+          $('#submit-btn').attr("href", "#myModal");
+        });
+      });
     }
-}
+
+    else{
+      // window.location = "";
+    }
+  </script>
+
+ </head>
+
+<body>
+    <div id="rotate-prompt">
+        <img src="./assets/images/rotate-screen.gif">
+        Please play the game in landscape mode!
+    </div>
+    <div class="background">
+    <p id="heading"> Question 1</p>
+
+    <p id="q-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</p>
+
+    <div id="input3">
+        <input class="input2">
+    </div>
+
+      <a id="submit-btn" data-toggle="modal" onclick="sendres();"><p>Submit</p></a>
+    </div>
+
+    <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Oops! Dont lose hope!</h4>
+        </div>
+        <div class="modal-body">
+          <p>The answer is incorrect!<br>Please try again</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
