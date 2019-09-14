@@ -26,6 +26,9 @@ class Team(models.Model):
     state = models.PositiveIntegerField(default=0)
     participant_count = models.PositiveIntegerField(default=0)
 
+    def __str__(self):
+        return self.name
+
 
 class Participant(models.Model):
     user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
@@ -35,4 +38,4 @@ class Participant(models.Model):
     team = models.ForeignKey('Team', on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return self.email
+        return self.user.username

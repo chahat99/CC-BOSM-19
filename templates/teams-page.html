@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -22,16 +23,22 @@
             <h1 id="teamname">Team Name</h1>
             <div class="team-members">
                 <div class="left">
-                    <div id="player1" class="players">John Doe</div>
-                    <p id="player2" class="players">John Doe</p>
-                    <p id="player3" class="players">John Doe</p>
-                    <p id="player4" class="players">John Doe</p>
+                    <div id="player1" class="players">  </div>
+                    <p id="player2" class="players">  </p>
+                    <p id="player3" class="players">  </p>
+                    <p id="player4" class="players">  </p>
+                    <p id="player5" class="players">  </p>
+                    <p id="player6" class="players">  </p>
+                    <p id="player7" class="players">  </p>
                 </div>
                 <div class="right">
-                    <p id="player5" class="players">John Doe</p>
-                    <p id="player6" class="players">John Doe</p>
-                    <p id="player7" class="players">John Doe</p>
-                    <p id="player8" class="players">John Doe</p>
+                    <p id="player8" class="players">  </p>
+                    <p id="player9" class="players">  </p>
+                    <p id="player10" class="players">  </p>
+                    <p id="player11" class="players">  </p>
+                    <p id="player12" class="players">  </p>
+                    <p id="player13" class="players">  </p>
+                    <p id="player14" class="players">  </p>
                 </div>
             </div>
         </div>
@@ -40,11 +47,11 @@
                 <button class="refreshbtn" id="refbut">Refresh</button>
             </div>
             <div class="start">
-                <button class="startgame" id="startgame">Start Game</button>
+                <button class="startgame" id="startgame" onclick="redirect()">Start Game</button>
             </div>
         </div>
     </div>
 
-    <script src="js/teampage.js"></script>
+    <script src="{% static 'js/teampage.js' %}"></script>
 </body>
 </html>
