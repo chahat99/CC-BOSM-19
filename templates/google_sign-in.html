@@ -3,53 +3,44 @@
   <head>
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="550144110348-puc1jhgg5v7d3p8l8ar4940ab0nsjb50.apps.googleusercontent.com">
-		<link rel="stylesheet" href="{% static "css/loader.css"%}">
+    <link rel="stylesheet" href="{% static "css/loader.css"%}">
+    <link rel="stylesheet" href="{% static "css/google_sign-in.css"%}">
+    
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="{% static "js/sign-in_ajax.js" %}"></script>
-    <style>
-      * {
-        margin: 0;
-      }
-
-      body{
-        background-image: url("{%static "assets/images/Background.svg" %}");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        overflow: hidden;
-      }
-
-      .g-signin2{
-          /* margin-left: 50%; */
-          /* margin-top: 50%; */
-          width: auto;
-          position: fixed;
-          top: 55%;
-          left: 44%;
-        }
-
-        .abcRioButtonBlue {
-          margin: 0 auto;
-        }
-    </style>
   </head>
   <body>
+      <img src="{%static "assets/images/treasure-Hunt.png"%}" alt="Avatar" style="width:100vw;height:100vh;position: absolute;z-index: -10;">
     <!--Loader-->
-		<div class="loader">
+		<!-- <div class="loader">
         <div class="flip-card ">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <img src="{%static "assets/images/loader_skull.svg"%}" alt="Avatar" style="width:40vw;height:50vh;">
             </div>
-            <!-- <div class="flip-card-back">
-              <img src="{%static "assets/images/bosm_logo.svg"%}" alt="Avatar" style="width:40vw;height:50vh;">
-            </div> -->
           </div>
         </div>
-      </div>
-
-    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">
-        <div></div>
+      </div> -->
+    
+    <div class="cclogo">
+      <img src="{%static "assets/images/CodingClub-06.svg"%}"></img>
+    </div>
+    <div class="text">Presents</div>
+    <div class="name">SportsCrypt</div>
+    <h5 class="subtitle">A treasure hunt event by Coding Club.</h5>
+    <div class="g-signin2" class="customGPlusSignIn" data-onsuccess="onSignIn" data-theme="dark">
+    </div>
+    <div id="compass-1">
+      <!-- <img src="{%static "assets/images/compass-13.svg"%}"></img> -->
+      <img class="needle" src="{%static "assets/images/needle-01.svg"%}"></img>
+    </div>
+    <div id="compass-2">
+      <!-- <img src="{%static "assets/images/compass-13.svg"%}"></img> -->
+      <img class="needle" src="{%static "assets/images/needle-01.svg"%}"></img>
+    </div>
+    <div id="compass-3">
+      <!-- <img src="{%static "assets/images/compass-13.svg"%}"></img> -->
+      <img class="needle" src="{%static "assets/images/needle-01.svg"%}"></img>
     </div>
     <script>
       function onSignIn(googleUser) {
@@ -64,21 +55,6 @@
 
         // The ID token you need to pass to your backend:
         var token = googleUser.getAuthResponse().id_token;
-        // var obj = {
-        //   id : token
-        // }
-        // var send = JSON.stringify(obj);
-        // var res = new XMLHttpRequest();
-        // res.open("POST","/treasure/login/",true);
-        // res.setRequestHeader("Content-Type","application/json");
-        // res.onreadystatechange = function() {
-        //   if (this.readyState ==4 && this.status == 200) {
-        //   }
-        // };
-        // var resp;
-        // resp=res.send(send);
-        // console.log(resp);
-        // console.log("ID Token: " + id_token);
 
           var obj = {
           token : token
@@ -96,7 +72,13 @@
         res.send(send);
         window.location.href = "http://localhost:8000/treasure/StartGame.html";
       }
-
+      var auth2 = gapi.auth2.getAuthInstance();
+      function attachSignin(element) {
+    console.log(element.id);
+    auth2.attachClickHandler(element, {},onSignIn(googleUser));
+  }
+  attachSignin(document.getElementById("customBtn"));
+      
       function loadComplete() {
 				loader = document.querySelector(".loader");
 				loader.style.opacity = "0";
