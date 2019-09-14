@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 import random
+from django.contrib.auth.models import User
 
 
 def generatecode():
@@ -27,7 +28,11 @@ class Team(models.Model):
 
 
 class Participant(models.Model):
+    user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
     unique_id = models.UUIDField("Participant UUID", primary_key=True,
                                  default=uuid.uuid4, editable=False)
     email = models.CharField(max_length=100, blank=False)
-    team = models.ForeignKey('Team', on_delete=models.CASCADE, blank=True)
+    team = models.ForeignKey('Team', on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return self.email
