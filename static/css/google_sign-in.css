@@ -20,7 +20,6 @@
         transform: translate(-50%,-50%);
         width:20%;
         position: fixed;
-        /* background-image: url( "../assets/images/CodingClub-06.svg"); */
         z-index: 1;
     }
     .text {
