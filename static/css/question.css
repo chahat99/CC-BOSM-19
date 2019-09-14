@@ -2,10 +2,10 @@
 	font-family: "caslonish";
 	src: url("../assets/fonts/CaslonishFraxx.ttf");
 }
-@font-face{
+/* @font-face{
 	font-family: "Caribbean Regular";
 	src: url("");
-}
+} */
 
 #rotate-prompt{
 	display: none;
