@@ -9,9 +9,10 @@ def generatecode():
 
 
 class Question(models.Model):
-    unique_id = models.UUIDField("Question UUID", primary_key=True,
-                                 default=uuid.uuid4, editable=False)
+    # unique_id = models.UUIDField("Question UUID", primary_key=True,
+    #                              default=uuid.uuid4, editable=False)
     question = models.CharField(max_length=500)
+    myid = models.IntegerField(blank = False)
 
 
 class Answer(models.Model):
@@ -23,8 +24,11 @@ class Answer(models.Model):
 class Team(models.Model):
     name = models.CharField(max_length=100)
     code = models.PositiveIntegerField(default=generatecode, blank=False, unique=True)
-    state = models.PositiveIntegerField(default=0)
+    state = models.PositiveIntegerField(default=1)
     participant_count = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return self.name
 
 
 class Participant(models.Model):
@@ -35,4 +39,4 @@ class Participant(models.Model):
     team = models.ForeignKey('Team', on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return self.email
+        return self.user.username

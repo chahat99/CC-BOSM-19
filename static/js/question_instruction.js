@@ -1,27 +1,32 @@
+window.onload = load();
+function load() {
 var xhttp = new XMLHttpRequest();
-xhttp.open("GET","",true);
+xhttp.open("GET","/treasure/get/question_details",true);
 xhttp.setRequestHeader("Content-Type","application/json");
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var inst = JSON.parse(this.responseText);
-        document.getElementById("").innerHTML = inst.instructions;
+        console.log(inst)
+        document.getElementById("show-text").innerHTML = inst.Question;
     }
   };
   
-  xhttp1.send();
-
+  xhttp.send();
+}
+function submitCode() {
   var send = new XMLHttpRequest();
   var obj = {
-      key : document.getElementsByClassName[0].value
+      ans : document.getElementById('code-to').value
   }
   var sendkey = JSON.stringify(obj);
-  send.open("POST","",true);
+  send.open("POST","/treasure/check_question_answer/",true);
   send.setRequestHeader("Content-Type","application/json");
   send.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var flag1 = JSON.parse(this.responseText);
-        if(flag1 == 1) {
-            window.location.href = "http://localhost:8000/treasure/question-1.html";
+        console.log(flag1)
+        if(flag1.status == 1) {
+            window.location.href = "/treasure/question-1.html";
           } else {
             alert("Wrong Key");
           }
@@ -29,3 +34,4 @@ xhttp.onreadystatechange = function() {
   };
   
   send.send(sendkey);
+}

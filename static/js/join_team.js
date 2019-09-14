@@ -9,6 +9,14 @@ function joinTeam(){
   xhttp.setRequestHeader("Content-Type", "application/json");
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
+      var resp=JSON.parse(this.responseText);
+      console.log(resp);
+      if(resp.status == 1) {
+        window.location.href = "/treasure/teams-page.html";
+    }
+    else {
+        alert(resp.message);
+    }
     }
   };
 

@@ -15,16 +15,6 @@
     src: url("../assets/fonts/Caribbean.ttf")
   }
 
-  .g-signin2{
-      /* margin-left: 50%; */
-      /* margin-top: 50%; */
-      width: auto;
-      position: fixed;
-      top: 75%;
-      left: 50%;
-      transform: translate(-50%,-50%);
-    }
-
     .abcRioButtonBlue {
       margin: 0 auto;
     }
@@ -47,6 +37,20 @@
         font-family: "caribbean";
         color:#7a6453;
         font-size: 1.5vw;
+    }
+    .signin {
+        width: auto;
+        position: fixed;
+        top: 75%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    height: 4vh;
+    display: block;
+    color: #9c3111;
+    background-color: #d1bd79;
+    border: 1vh solid #82553d;
+    font-size: 4vh;
+    padding: 0.5vw 1vw 0.5vw 1vw;
     }
     .name {
         top: 55%;

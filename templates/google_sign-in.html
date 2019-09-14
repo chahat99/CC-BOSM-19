@@ -1,5 +1,6 @@
 <html lang="en">
 {% load staticfiles%}
+{% load socialaccount %}
   <head>
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="550144110348-puc1jhgg5v7d3p8l8ar4940ab0nsjb50.apps.googleusercontent.com">
@@ -12,7 +13,7 @@
   <body>
       <img src="{%static "assets/images/treasure-Hunt.png"%}" alt="Avatar" style="width:100vw;height:100vh;position: absolute;z-index: -10;">
     <!--Loader-->
-		<div class="loader">
+		<div class="loader" id="loading">
         <div class="flip-card ">
           <div class="flip-card-inner">
             <div class="flip-card-front">
@@ -28,7 +29,10 @@
     <div class="text">Presents</div>
     <div class="name">SportsCrypt</div>
     <h5 class="subtitle">A treasure hunt event by Coding Club.</h5>
-    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">
+  
+    <div class="signin">
+       <a href="{% provider_login_url 'google' %}" style="text-decoration: none;">Sign Up</a>
+    </div>
     </div>
     <div id="compass-1">
       <!-- <img src="{%static "assets/images/compass-13.svg"%}"></img> -->
@@ -43,21 +47,14 @@
       <img class="needle" src="{%static "assets/images/needle-01.svg"%}"></img>
     </div>
     <script>
-      function onSignIn(googleUser) {
-        // Useful data for your client-side scripts:
-        var profile = googleUser.getBasicProfile();
-        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-        console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
-
-        // The ID token you need to pass to your backend:
-        var token = googleUser.getAuthResponse().id_token;
-
+      document.getElementById('loading').style.display = "none";
           var obj = {
           token : token
+        }
+        window.onload = removeLoader();
+        function removeLoader() {
+          document.getElementById('loading').style.display = "none";
+          document.getElementsByClassName('loader')[0].style.opacity = "0";
         }
         console.log(token)
         var send = JSON.stringify(obj);
@@ -79,9 +76,7 @@
         // else{
         //   var link = "question-main.html";
         // }
-        window.location.href = "http://localhost:8000/treasure/StartGame.html";
         // window.location.href = "http://localhost:8000/treasure/" + link;
-      }
       function loadComplete() {
 				loader = document.querySelector(".loader");
 				loader.style.opacity = "0";
@@ -91,9 +86,9 @@
 				}, 800);
 			}
 
-			window.onload = function(){
-				setTimeout(loadComplete, 4000);
-			};
+			// window.onload = function(){
+			// 	setTimeout(loadComplete, 4000);
+			// };
     </script>
   </body>
 </html>

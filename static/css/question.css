@@ -119,10 +119,25 @@ p {
 }
 
 #q-text{
+		top: 35%;
+		overflow-y: scroll;
   	position: absolute;
     font-family: 'Lato', sans-serif;
     font-size: 2vw;
     width: 60%;
+		height: 25%;
+}
+
+#q-text::-webkit-scrollbar{
+	width:10%;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+#q-text::-webkit-scrollbar-thumb {
+  background: url("../assets/images/scroll bar.svg");
+	background-repeat: no-repeat;
 }
 
 #q-txt{
