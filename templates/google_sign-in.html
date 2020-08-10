@@ -1,0 +1,94 @@
+<html lang="en">
+{% load staticfiles%}
+{% load socialaccount %}
+  <head>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="550144110348-puc1jhgg5v7d3p8l8ar4940ab0nsjb50.apps.googleusercontent.com">
+    <link rel="stylesheet" href="{% static "css/loader.css"%}">
+    <link rel="stylesheet" href="{% static "css/google_sign-in.css"%}">
+    
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="{% static "js/sign-in_ajax.js" %}"></script>
+  </head>
+  <body>
+      <img src="{%static "assets/images/treasure-Hunt.png"%}" alt="Avatar" style="width:100vw;height:100vh;position: absolute;z-index: -10;">
+    <!--Loader-->
+		<div class="loader" id="loading">
+        <div class="flip-card ">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="{%static "assets/images/loader_skull.svg"%}" alt="Avatar" style="width:40vw;height:50vh;">
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    <div class="cclogo">
+      <img src="{%static "assets/images/CodingClub-06.svg"%}"></img>
+    </div>
+    <div class="text">Presents</div>
+    <div class="name">SportsCrypt</div>
+    <h5 class="subtitle">A treasure hunt event by Coding Club.</h5>
+  
+    <div class="signin">
+       <a href="{% provider_login_url 'google' %}" style="text-decoration: none;">Sign Up</a>
+    </div>
+    </div>
+    <div id="compass-1">
+      <!-- <img src="{%static "assets/images/compass-13.svg"%}"></img> -->
+      <img class="needle" src="{%static "assets/images/needle-01.svg"%}"></img>
+    </div>
+    <div id="compass-2">
+      <!-- <img src="{%static "assets/images/compass-13.svg"%}"></img> -->
+      <img class="needle" src="{%static "assets/images/needle-01.svg"%}"></img>
+    </div>
+    <div id="compass-3">
+      <!-- <img src="{%static "assets/images/compass-13.svg"%}"></img> -->
+      <img class="needle" src="{%static "assets/images/needle-01.svg"%}"></img>
+    </div>
+    <script>
+      document.getElementById('loading').style.display = "none";
+          var obj = {
+          token : token
+        }
+        window.onload = removeLoader();
+        function removeLoader() {
+          document.getElementById('loading').style.display = "none";
+          document.getElementsByClassName('loader')[0].style.opacity = "0";
+        }
+        console.log(token)
+        var send = JSON.stringify(obj);
+        var res = new XMLHttpRequest();
+        res.open("POST","/treasure/login/",true);
+        res.setRequestHeader("Content-Type","application/json");
+        res.onreadystatechange = function() {
+          if (this.readyState ==4 && this.status == 200) {
+            var check = JSON.parse(this.responseText);
+            console.log(check);
+            localStorage.setItem("id",check.participant_id);
+            console.log(localStorage.getItem("id"));
+          }
+        };
+        res.send(send);
+        // if(check.status == 1) {
+        //  var link = "StartGame.html";
+        // }
+        // else{
+        //   var link = "question-main.html";
+        // }
+        // window.location.href = "http://localhost:8000/treasure/" + link;
+      function loadComplete() {
+				loader = document.querySelector(".loader");
+				loader.style.opacity = "0";
+				console.log("LOADED");
+				setTimeout(function() {
+					loader.style.display = "none"
+				}, 800);
+			}
+
+			// window.onload = function(){
+			// 	setTimeout(loadComplete, 4000);
+			// };
+    </script>
+  </body>
+</html>
